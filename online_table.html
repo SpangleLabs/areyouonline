@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+table {
+border-collapse: collapse;
+}
+td.hour {
+border: 1px solid black;
+width: 50px;
+height: 20px
+}
+td.active {
+background-color: #0078A0;
+}
+</style>
+</head>
+<body>
+
+
+<table id="online_table">
+<thead>
+<tr></tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+
+<script>
+$(document).ready(function() {
+ var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+ var hours = new Array();
+ for(i = 0; i < 24; i++) {
+  hours[i] = {};
+  hours[i]["class"] = "t" + ("0"+i).slice(-2) + "00";
+  hours[i]["name"] = ("0"+i).slice(-2) + ":00";
+ }
+ $("#online_table > thead > tr").append("<th></th>");
+ $.each(days,function(index,value) {
+  $("#online_table > thead > tr").append("<th>"+value+"</th>");
+ });
+ $.each(hours,function(houri,hourv) {
+  $("#online_table > tbody").append("<tr class='"+hourv["class"]+"'></td>");
+  $("#online_table > tbody > ."+hourv["class"]).append("<td class='time "+hourv["class"]+"'>"+hourv["name"]+"</td>");
+  $.each(days,function(dayi,dayn) {
+   $("#online_table > tbody > ."+hourv["class"]).append("<td class='hour "+hourv["class"]+" "+dayn.toLowerCase()+"'></td>");
+  });
+ });
+});
+
+$("#online_table").on("click","td.hour",function() {$(this).toggleClass("active");});
+$("#online_table").on("click","td.time",function() {$(this).parent().children(".hour").each(function() {$(this).toggleClass("active");});});
+</script>
+
+</body>
+</html>
