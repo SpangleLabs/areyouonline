@@ -40,7 +40,7 @@ $(document).ready(function() {
  }
  $("#online_table > thead > tr").append("<th></th>");
  $.each(days,function(index,value) {
-  $("#online_table > thead > tr").append("<th>"+value+"</th>");
+  $("#online_table > thead > tr").append("<th class='day "+value.toLowerCase()+"'>"+value+"</th>");
  });
  $.each(hours,function(houri,hourv) {
   $("#online_table > tbody").append("<tr class='"+hourv["class"]+"'></td>");
