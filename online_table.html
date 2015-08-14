@@ -57,6 +57,16 @@ $("#online_table").on("click","td.time",function() {
 		$(this).toggleClass("active");
 	});
 });
+$("#online_table").on("click","th.day",function() {
+	var classList = $(this).attr("class").split(/\s+/);
+	$.each(classList,function(index,className) {
+		if(className !== "day") {
+			$("td."+className).each(function() {
+				$(this).toggleClass("active");
+			});
+		}
+	});
+});
 </script>
 
 </body>
