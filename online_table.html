@@ -30,6 +30,28 @@
 </table>
 
 <script>
+//OnlineTable class
+$.OnlineTable = function(element) {
+	//Set up days list.
+	this.mListDays = new Array();
+	$.each(["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],function(index,value) {
+		newDay = {};
+		newDay["class"] = value.toLowerCase();
+		newDay["label"] = value;
+		this.mListDays.push(newDay);
+	});
+	//Set up hours list.
+	this.mListHours = new Array();
+	for(i=0;i<24;i++) {
+		newHour = {};
+		newHour["class"] = "t" + ("0"+i).slice(-2) + "00";
+		newHour["label"] = ("0"+i).slice(-2)+":00";
+		this.mListHours.push(newHour);
+	}
+	//TODO:Draw table
+}
+
+
 $(document).ready(function() {
 	var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 	var hours = new Array();
