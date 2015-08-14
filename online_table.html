@@ -30,26 +30,26 @@
 </table>
 
 <script>
-	$(document).ready(function() {
-		var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-		var hours = new Array();
-		for(i = 0; i < 24; i++) {
-			hours[i] = {};
-			hours[i]["class"] = "t" + ("0"+i).slice(-2) + "00";
-			hours[i]["name"] = ("0"+i).slice(-2) + ":00";
-		}
-		$("#online_table > thead > tr").append("<th></th>");
-		$.each(days,function(index,value) {
-			$("#online_table > thead > tr").append("<th class='day "+value.toLowerCase()+"'>"+value+"</th>");
-		});
-		$.each(hours,function(houri,hourv) {
-			$("#online_table > tbody").append("<tr class='"+hourv["class"]+"'></td>");
-			$("#online_table > tbody > ."+hourv["class"]).append("<td class='time "+hourv["class"]+"'>"+hourv["name"]+"</td>");
-			$.each(days,function(dayi,dayn) {
-				$("#online_table > tbody > ."+hourv["class"]).append("<td class='hour "+hourv["class"]+" "+dayn.toLowerCase()+"'></td>");
-			});
+$(document).ready(function() {
+	var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+	var hours = new Array();
+	for(i = 0; i < 24; i++) {
+		hours[i] = {};
+		hours[i]["class"] = "t" + ("0"+i).slice(-2) + "00";
+		hours[i]["name"] = ("0"+i).slice(-2) + ":00";
+	}
+	$("#online_table > thead > tr").append("<th></th>");
+	$.each(days,function(index,value) {
+		$("#online_table > thead > tr").append("<th class='day "+value.toLowerCase()+"'>"+value+"</th>");
+	});
+	$.each(hours,function(houri,hourv) {
+		$("#online_table > tbody").append("<tr class='"+hourv["class"]+"'></td>");
+		$("#online_table > tbody > ."+hourv["class"]).append("<td class='time "+hourv["class"]+"'>"+hourv["name"]+"</td>");
+		$.each(days,function(dayi,dayn) {
+			$("#online_table > tbody > ."+hourv["class"]).append("<td class='hour "+hourv["class"]+" "+dayn.toLowerCase()+"'></td>");
 		});
 	});
+});
 
 $("#online_table").on("click","td.hour",function() {$(this).toggleClass("active");});
 $("#online_table").on("click","td.time",function() {
